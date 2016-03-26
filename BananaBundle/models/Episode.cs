@@ -57,5 +57,10 @@ namespace BananaBundle.models
         }
 
         public string Extension { get; set; }
+
+        public Episode(string file)
+        {
+            this.Path = file;
+        }
     }
 }
