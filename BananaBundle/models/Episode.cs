@@ -12,48 +12,33 @@ namespace BananaBundle.models
         {
             get
             {
-                throw new NotImplementedException();
+                return this.Name;
             }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            set;
         }
 
         public string Name
         {
             get
             {
-                throw new NotImplementedException();
+                return System.IO.Path.GetFileName(this.Path);
             }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            set;
         }
 
         public string Path
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get;
+            set;
         }
 
         public double Size
         {
             get
             {
-                throw new NotImplementedException();
+                return new System.IO.FileInfo(this.Path).Length / Math.Pow(1024, 3);
             }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            set;
         }
 
         public string Extension { get; set; }
