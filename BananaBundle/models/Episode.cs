@@ -41,7 +41,14 @@ namespace BananaBundle.models
             private set;
         }
 
-        public string Extension { get; set; }
+        public string Extension 
+        {
+            get
+            {
+                return System.IO.Path.GetExtension(this.Path);
+            }
+            private set; 
+        }
 
         public Episode(string file)
         {
