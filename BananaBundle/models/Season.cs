@@ -5,9 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace BananaBundle.models
 {
+    [DebuggerDisplay("{Name}")]
     public class Season : IBananaObject
     {
         public string Id
