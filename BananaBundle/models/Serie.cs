@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,5 +58,17 @@ namespace BananaBundle.models
         }
 
         public List<Season> Seasons { get; set; }
+
+        public Serie(string directory)
+        {
+            this.Seasons = new List<Season>();
+            if(File.Exists(@directory))
+            {
+                foreach (string serieFolder in Directory.GetDirectories(@directory))
+                {
+                    this.Seasons.Add(new Season(serieFolder));
+                }
+            }
+        }
     }
 }
