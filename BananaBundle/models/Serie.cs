@@ -5,27 +5,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace BananaBundle.models
 {
-    class Serie : IBananaObject
+    [DebuggerDisplay("{Name}")]
+    public class Serie : IBananaObject
     {
         public string Id
         {
             get
             {
-                return Regex.Replace(this.Path, @"[^A-Za-z0-9]", "").ToLower();
+                return Regex.Replace(this.Name, @"[^A-Za-z0-9]", "").ToLower();
             }
-            private set;
         }
 
         public string Name
         {
             get
             {
-                return System.IO.Path.GetDirectoryName(this.Path);
+                return System.IO.Path.GetFileName(this.Path);
             }
-            private set;
         }
 
         public string Path
@@ -40,7 +40,6 @@ namespace BananaBundle.models
             {
                 return this.Seasons.Select(x => x.Size).Sum();
             }
-            private set;
         }
 
         public List<Season> Seasons { get; private set; }

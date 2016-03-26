@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 
 namespace BananaBundle.models
 {
-    class Season : IBananaObject
+    public class Season : IBananaObject
     {
         public string Id
         {
@@ -16,7 +16,6 @@ namespace BananaBundle.models
             {
                 return Regex.Replace(this.Path, @"[^\d]", "").TrimStart('0');
             }
-            private set;
         }
 
         public string Name
@@ -25,7 +24,6 @@ namespace BananaBundle.models
             {
                 return System.IO.Path.GetDirectoryName(this.Path);
             }
-            private set;
         }
 
         public string Path
@@ -40,7 +38,6 @@ namespace BananaBundle.models
             {
                 return this.Episodes.Select(x => x.Size).Sum();
             }
-            private set;
         }
 
         public List<Episode> Episodes { get; private set; }

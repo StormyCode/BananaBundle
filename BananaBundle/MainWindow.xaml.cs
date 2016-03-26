@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BananaBundle.controllers;
 
 namespace BananaBundle
 {
@@ -20,9 +21,11 @@ namespace BananaBundle
     /// </summary>
     public partial class MainWindow : Window
     {
+        public BundleHandler Bundle { get; set; }
         public MainWindow()
         {
             InitializeComponent();
+            this.Bundle = new BundleHandler(@"C:\Users\Julian\Desktop\Serien");
         }
     }
 }

@@ -1,2 +1,14 @@
 c:\users\julian\documents\visual studio 2013\Projects\BananaBundle\BananaBundle\bin\Debug\BananaBundle.exe.config
 C:\Users\Julian\Source\Repos\BananaBundle\BananaBundle\bin\Debug\BananaBundle.exe.config
+C:\Users\Julian\Source\Repos\BananaBundle\BananaBundle\obj\Debug\BananaBundle.csprojResolveAssemblyReference.cache
+C:\Users\Julian\Source\Repos\BananaBundle\BananaBundle\obj\Debug\MainWindow.baml
+C:\Users\Julian\Source\Repos\BananaBundle\BananaBundle\obj\Debug\MainWindow.g.cs
+C:\Users\Julian\Source\Repos\BananaBundle\BananaBundle\obj\Debug\App.g.cs
+C:\Users\Julian\Source\Repos\BananaBundle\BananaBundle\obj\Debug\BananaBundle_MarkupCompile.cache
+C:\Users\Julian\Source\Repos\BananaBundle\BananaBundle\obj\Debug\BananaBundle.g.resources
+C:\Users\Julian\Source\Repos\BananaBundle\BananaBundle\obj\Debug\BananaBundle.Properties.Resources.resources
+C:\Users\Julian\Source\Repos\BananaBundle\BananaBundle\obj\Debug\BananaBundle.csproj.GenerateResource.Cache
+C:\Users\Julian\Source\Repos\BananaBundle\BananaBundle\bin\Debug\BananaBundle.exe
+C:\Users\Julian\Source\Repos\BananaBundle\BananaBundle\bin\Debug\BananaBundle.pdb
+C:\Users\Julian\Source\Repos\BananaBundle\BananaBundle\obj\Debug\BananaBundle.exe
+C:\Users\Julian\Source\Repos\BananaBundle\BananaBundle\obj\Debug\BananaBundle.pdb

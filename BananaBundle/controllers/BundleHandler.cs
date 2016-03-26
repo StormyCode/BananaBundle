@@ -8,7 +8,7 @@ using BananaBundle.models;
 
 namespace BananaBundle.controllers
 {
-    class BundleHandler
+    public class BundleHandler
     {
         public List<Serie> Series { get; private set; }
 

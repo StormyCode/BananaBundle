@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace BananaBundle.models
 {
-    protected interface IBananaObject
+    public interface IBananaObject
     {
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public string Path { get; set; }
-        public double Size { get; set; }
+        string Id { get; }
+        string Name { get; }
+        string Path { get; }
+        double Size { get; }
     }
 }

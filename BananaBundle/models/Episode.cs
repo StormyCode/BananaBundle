@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace BananaBundle.models
 {
-    class Episode : IBananaObject
+    public class Episode : IBananaObject
     {
+        
         public string Id
         {
             get
             {
                 return this.Name;
             }
-            private set;
         }
 
         public string Name
@@ -23,7 +23,6 @@ namespace BananaBundle.models
             {
                 return System.IO.Path.GetFileName(this.Path);
             }
-            private set;
         }
 
         public string Path
@@ -38,16 +37,14 @@ namespace BananaBundle.models
             {
                 return new System.IO.FileInfo(this.Path).Length / Math.Pow(1024, 3);
             }
-            private set;
         }
-
-        public string Extension 
+        
+        public string Extension
         {
             get
             {
                 return System.IO.Path.GetExtension(this.Path);
             }
-            private set; 
         }
 
         public Episode(string file)
