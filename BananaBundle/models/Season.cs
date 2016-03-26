@@ -55,5 +55,7 @@ namespace BananaBundle.models
                 throw new NotImplementedException();
             }
         }
+
+        public List<Episode> Episodes { get; set; }
     }
 }
