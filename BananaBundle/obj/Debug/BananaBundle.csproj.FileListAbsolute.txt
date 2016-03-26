@@ -1,1 +1,2 @@
 c:\users\julian\documents\visual studio 2013\Projects\BananaBundle\BananaBundle\bin\Debug\BananaBundle.exe.config
+C:\Users\Julian\Source\Repos\BananaBundle\BananaBundle\bin\Debug\BananaBundle.exe.config
