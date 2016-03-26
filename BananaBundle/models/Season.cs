@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace BananaBundle.models
 {
@@ -13,48 +14,33 @@ namespace BananaBundle.models
         {
             get
             {
-                throw new NotImplementedException();
+                return Regex.Replace(this.Path, @"[^\d]", "").TrimStart('0');
             }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            set;
         }
 
         public string Name
         {
             get
             {
-                throw new NotImplementedException();
+                return System.IO.Path.GetDirectoryName(this.Path);
             }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            set;
         }
 
         public string Path
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get;
+            set;
         }
 
         public double Size
         {
             get
             {
-                throw new NotImplementedException();
+                return this.Episodes.Select(x => x.Size).Sum();
             }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            set;
         }
 
         public List<Episode> Episodes { get; set; }
