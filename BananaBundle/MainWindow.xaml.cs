@@ -26,6 +26,7 @@ namespace BananaBundle
         {
             InitializeComponent();
             this.Bundle = new BundleHandler(@"C:\Users\Julian\Desktop\Serien");
+            // this.Bundle.WriteXML();
         }
     }
 }
