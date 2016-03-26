@@ -54,7 +54,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="controllers\BundleHandler.cs" />
-    <Compile Include="models\BananaObject.cs" />
+    <Compile Include="models\IBananaObject.cs" />
     <Compile Include="models\Serie.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

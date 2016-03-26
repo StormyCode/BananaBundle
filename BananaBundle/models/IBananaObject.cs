@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BananaBundle.models
 {
-    protected interface BananaObject
+    protected interface IBananaObject
     {
         public string Id { get; set; }
         public string Name { get; set; }
