@@ -47,6 +47,7 @@ namespace BananaBundle.models
         public Season(string directory)
         {
             this.Episodes = new List<Episode>();
+            this.Path = @directory;
             if (Directory.Exists(@directory))
             {
                 foreach (string episodeFile in Directory.GetFiles(@directory))
