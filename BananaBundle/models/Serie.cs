@@ -62,7 +62,7 @@ namespace BananaBundle.models
         public Serie(string directory)
         {
             this.Seasons = new List<Season>();
-            if(File.Exists(@directory))
+            if(Directory.Exists(@directory))
             {
                 foreach (string serieFolder in Directory.GetDirectories(@directory))
                 {
