@@ -14,7 +14,7 @@ namespace BananaBundle.models
             {
                 return this.Name;
             }
-            set;
+            private set;
         }
 
         public string Name
@@ -23,13 +23,13 @@ namespace BananaBundle.models
             {
                 return System.IO.Path.GetFileName(this.Path);
             }
-            set;
+            private set;
         }
 
         public string Path
         {
             get;
-            set;
+            private set;
         }
 
         public double Size
@@ -38,7 +38,7 @@ namespace BananaBundle.models
             {
                 return new System.IO.FileInfo(this.Path).Length / Math.Pow(1024, 3);
             }
-            set;
+            private set;
         }
 
         public string Extension { get; set; }

@@ -16,7 +16,7 @@ namespace BananaBundle.models
             {
                 return Regex.Replace(this.Path, @"[^\d]", "").TrimStart('0');
             }
-            set;
+            private set;
         }
 
         public string Name
@@ -25,13 +25,13 @@ namespace BananaBundle.models
             {
                 return System.IO.Path.GetDirectoryName(this.Path);
             }
-            set;
+            private set;
         }
 
         public string Path
         {
             get;
-            set;
+            private set;
         }
 
         public double Size
@@ -40,10 +40,10 @@ namespace BananaBundle.models
             {
                 return this.Episodes.Select(x => x.Size).Sum();
             }
-            set;
+            private set;
         }
 
-        public List<Episode> Episodes { get; set; }
+        public List<Episode> Episodes { get; private set; }
 
         public Season(string directory)
         {
