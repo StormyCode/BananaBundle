@@ -16,7 +16,7 @@ namespace BananaBundle.models
         {
             get
             {
-                return Regex.Replace(this.Path, @"[^\d]", "").TrimStart('0');
+                return Regex.Replace(this.Name, @"[^\d]", "").TrimStart('0');
             }
         }
 
@@ -24,7 +24,7 @@ namespace BananaBundle.models
         {
             get
             {
-                return System.IO.Path.GetDirectoryName(this.Path);
+                return System.IO.Path.GetFileName(this.Path);
             }
         }
 
