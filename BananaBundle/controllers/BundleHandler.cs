@@ -81,5 +81,37 @@ namespace BananaBundle.controllers
                 xmlWriter.WriteEndDocument();
             }
         }
+
+        public BundleHandler Compare(BundleHandler bundle)
+        {
+            for(int i = 0; i < this.Series.Count; i++)
+            {
+                for(int j = 0; j < bundle.Series.Count; j++)
+                {
+                    if (this.Series[i].Id == bundle.Series[j].Id)
+                    {
+                        for(int o = 0; o < this.Series[i].Seasons.Count; o++)
+                        {
+                            for (int k = 0; o < this.Series[j].Seasons.Count; k++)
+                            {
+                                if (this.Series[i].Seasons[o].Id == bundle.Series[j].Seasons[k].Id &&
+                                    this.Series[i].Seasons[o].Episodes.Count == bundle.Series[j].Seasons[k].Episodes.Count &&
+                                    this.Series[i].Seasons[o].Size > bundle.Series[j].Seasons[k].Size * 0.9 &&
+                                    this.Series[i].Seasons[o].Size < bundle.Series[j].Seasons[k].Size * 1.1)
+                                {
+                                    bundle.Series[j].Seasons.RemoveAt(k);
+                                }
+                                break;
+                            }
+                        }
+                    }
+                    if (bundle.Series[j].Seasons.Count == 0)
+                    {
+                        bundle.Series.RemoveAt(j);
+                    }
+                }
+            }
+            return bundle;
+        }
     }
 }

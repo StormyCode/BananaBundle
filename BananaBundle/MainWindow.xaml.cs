@@ -23,11 +23,13 @@ namespace BananaBundle
     public partial class MainWindow : Window
     {
         public BundleHandler Bundle { get; set; }
+        public BundleHandler xmlBundle { get; set; }
         public MainWindow()
         {
             InitializeComponent();
             this.Bundle = new BundleHandler(@"C:\Users\Julian\Desktop\Serien");
-            this.Bundle = new BundleHandler(XDocument.Load("structure.xml"));
+            this.xmlBundle = new BundleHandler(XDocument.Load("test_structure.xml"));
+            this.Bundle = Bundle.Compare(this.xmlBundle);
         }
     }
 }
