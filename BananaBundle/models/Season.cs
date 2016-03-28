@@ -34,11 +34,19 @@ namespace BananaBundle.models
             private set;
         }
 
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private double _size;
         public double Size
         {
             get
             {
-                return this.Episodes.Select(x => x.Size).Sum();
+                if (this._size == 0)
+                    this._size = this.Episodes.Select(x => x.Size).Sum();
+                return this._size;
+            }
+            private set
+            {
+                this._size = value;
             }
         }
 
@@ -55,6 +63,13 @@ namespace BananaBundle.models
                     this.Episodes.Add(new Episode(episodeFile));
                 }
             }
+        }
+
+        public Season(string path, double size)
+        {
+            this.Episodes = new List<Episode>();
+            this.Path = path;
+            this.Size = size;
         }
     }
 }

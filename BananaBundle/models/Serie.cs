@@ -34,11 +34,19 @@ namespace BananaBundle.models
             private set;
         }
 
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private double _size;
         public double Size
         {
             get
             {
-                return this.Seasons.Select(x => x.Size).Sum();
+                if (this._size == 0)
+                    this._size = this.Seasons.Select(x => x.Size).Sum();
+                return _size;
+            }
+            private set
+            {
+                this._size = value;
             }
         }
 
@@ -48,13 +56,20 @@ namespace BananaBundle.models
         {
             this.Path = @directory;
             this.Seasons = new List<Season>();
-            if(Directory.Exists(@directory))
+            if (Directory.Exists(@directory))
             {
                 foreach (string serieFolder in Directory.GetDirectories(@directory))
                 {
                     this.Seasons.Add(new Season(serieFolder));
                 }
             }
+        }
+
+        public Serie(string path, double size)
+        {
+            this.Seasons = new List<Season>();
+            this.Path = path;
+            this.Size = size;
         }
     }
 }

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 using BananaBundle.controllers;
 
 namespace BananaBundle
@@ -26,7 +27,7 @@ namespace BananaBundle
         {
             InitializeComponent();
             this.Bundle = new BundleHandler(@"C:\Users\Julian\Desktop\Serien");
-            // this.Bundle.WriteXML();
+            this.Bundle = new BundleHandler(XDocument.Load("structure.xml"));
         }
     }
 }

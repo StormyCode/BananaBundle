@@ -33,11 +33,19 @@ namespace BananaBundle.models
             private set;
         }
 
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private double _size;
         public double Size
         {
             get
             {
-                return new System.IO.FileInfo(this.Path).Length / Math.Pow(1024, 3);
+                if(this._size == 0)
+                this._size = new System.IO.FileInfo(this.Path).Length / Math.Pow(1024, 3);
+                return this._size;
+            }
+            private set
+            {
+                this._size = value;
             }
         }
         
@@ -52,6 +60,12 @@ namespace BananaBundle.models
         public Episode(string file)
         {
             this.Path = file;
+        }
+
+        public Episode(string path, double size)
+        {
+            this.Path = path;
+            this.Size = size;
         }
     }
 }
