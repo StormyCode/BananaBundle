@@ -1,8 +1,9 @@
 ﻿<Window x:Class="BananaBundle.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
     <Grid Margin="0,0,0,-17.5">
-        
+        <TreeView Name="localBundle" HorizontalAlignment="Left" Height="287" Margin="30,10,0,0" VerticalAlignment="Top" Width="167"/>
+
     </Grid>
 </Window>

@@ -29,7 +29,12 @@ namespace BananaBundle
             InitializeComponent();
             this.Bundle = new BundleHandler(@"C:\Users\Julian\Desktop\Serien");
             this.xmlBundle = new BundleHandler(XDocument.Load("test_structure.xml"));
-            this.Bundle = Bundle.Compare(this.xmlBundle);
+            // this.Bundle = Bundle.Compare(this.xmlBundle);
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.localBundle = this.Bundle.GetTree();
         }
     }
 }

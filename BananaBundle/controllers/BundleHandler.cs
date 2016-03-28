@@ -7,6 +7,7 @@ using System.IO;
 using BananaBundle.models;
 using System.Xml;
 using System.Xml.Linq;
+using System.Windows.Controls;
 
 namespace BananaBundle.controllers
 {
@@ -84,13 +85,13 @@ namespace BananaBundle.controllers
 
         public BundleHandler Compare(BundleHandler bundle)
         {
-            for(int i = 0; i < this.Series.Count; i++)
+            for (int i = 0; i < this.Series.Count; i++)
             {
-                for(int j = 0; j < bundle.Series.Count; j++)
+                for (int j = 0; j < bundle.Series.Count; j++)
                 {
                     if (this.Series[i].Id == bundle.Series[j].Id)
                     {
-                        for(int o = 0; o < this.Series[i].Seasons.Count; o++)
+                        for (int o = 0; o < this.Series[i].Seasons.Count; o++)
                         {
                             for (int k = 0; o < this.Series[j].Seasons.Count; k++)
                             {
@@ -100,8 +101,8 @@ namespace BananaBundle.controllers
                                     this.Series[i].Seasons[o].Size < bundle.Series[j].Seasons[k].Size * 1.1)
                                 {
                                     bundle.Series[j].Seasons.RemoveAt(k);
+                                    break;
                                 }
-                                break;
                             }
                         }
                     }
@@ -112,6 +113,27 @@ namespace BananaBundle.controllers
                 }
             }
             return bundle;
+        }
+
+        public TreeView GetTree()
+        {
+            TreeView tv = new TreeView();
+            foreach (Serie serie in this.Series)
+            {
+                TreeViewItem  tvi = new TreeViewItem() { Header = serie.Name };
+                foreach (Season season in serie.Seasons)
+                {
+                    TreeViewItem tvi2 = new TreeViewItem() { Header = season.Name };
+                    foreach (Episode episode in season.Episodes)
+                    {
+                        TreeViewItem tvi3 = new TreeViewItem() { Header = episode.Name };
+                        tvi2.Items.Add(tvi3);
+                    }
+                    tvi.Items.Add(tvi2);
+                }
+                tv.Items.Add(tvi);
+            }
+            return tv;
         }
     }
 }
