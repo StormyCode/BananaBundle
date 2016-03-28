@@ -115,25 +115,65 @@ namespace BananaBundle.controllers
             return bundle;
         }
 
-        public TreeView GetTree()
+        public TreeViewItem[] GetTree()
         {
-            TreeView tv = new TreeView();
+            List<TreeViewItem> list = new List<TreeViewItem>();
             foreach (Serie serie in this.Series)
             {
-                TreeViewItem  tvi = new TreeViewItem() { Header = serie.Name };
+                TreeViewItem tvi = new TreeViewItem() { Header = serie.Name, Tag = serie.Id };
                 foreach (Season season in serie.Seasons)
                 {
-                    TreeViewItem tvi2 = new TreeViewItem() { Header = season.Name };
+                    TreeViewItem tvi2 = new TreeViewItem() { Header = season.Name, Tag = tvi.Tag+"/"+season.Id };
                     foreach (Episode episode in season.Episodes)
                     {
-                        TreeViewItem tvi3 = new TreeViewItem() { Header = episode.Name };
+                        TreeViewItem tvi3 = new TreeViewItem() { Header = episode.Name, Tag = tvi2.Tag+"/"+episode.Id };
                         tvi2.Items.Add(tvi3);
                     }
                     tvi.Items.Add(tvi2);
                 }
-                tv.Items.Add(tvi);
+                list.Add(tvi);
             }
-            return tv;
+            return list.ToArray();
+        }
+
+        public IBananaObject GetElementById(string id)
+        {
+            string[] args = id.Split('/');
+            IBananaObject result = null;
+            if (args.Length > 0)
+            {
+                foreach (Serie serie in this.Series)
+                {
+                    if (args[0] == serie.Id)
+                    {
+                        result = serie;
+                        if (args.Length > 1)
+                        {
+                            foreach (Season season in serie.Seasons)
+                            {
+                                if (args[1] == season.Id)
+                                {
+                                    result = season;
+                                    if (args.Length > 2)
+                                    {
+                                        foreach (Episode episode in season.Episodes)
+                                        {
+                                            if (args[2] == episode.Id)
+                                            {
+                                                result = episode;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+            return result;
         }
     }
 }

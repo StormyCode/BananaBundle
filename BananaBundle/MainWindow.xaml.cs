@@ -27,14 +27,20 @@ namespace BananaBundle
         public MainWindow()
         {
             InitializeComponent();
-            this.Bundle = new BundleHandler(@"C:\Users\Julian\Desktop\Serien");
+            //this.Bundle = new BundleHandler(@"C:\Users\Julian\Desktop\Serien");
+            this.Bundle = new BundleHandler(@"J:\Serien");
             this.xmlBundle = new BundleHandler(XDocument.Load("test_structure.xml"));
             // this.Bundle = Bundle.Compare(this.xmlBundle);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.localBundle = this.Bundle.GetTree();
+            this.localBundle.ItemsSource = this.Bundle.GetTree();
+        }
+
+        private void localBundle_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            this.txt1.Text = this.Bundle.GetElementById(((TreeViewItem)this.localBundle.SelectedItem).Tag.ToString()).Id;
         }
     }
 }

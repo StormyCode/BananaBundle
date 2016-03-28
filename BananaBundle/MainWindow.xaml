@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
     <Grid Margin="0,0,0,-17.5">
-        <TreeView Name="localBundle" HorizontalAlignment="Left" Height="287" Margin="30,10,0,0" VerticalAlignment="Top" Width="167"/>
+        <TreeView Name="localBundle" HorizontalAlignment="Left" Height="287" Margin="30,10,0,0" VerticalAlignment="Top" Width="349" SelectedItemChanged="localBundle_SelectedItemChanged"/>
+        <TextBox Name="txt1" HorizontalAlignment="Left" Height="23" Margin="390,35,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>
