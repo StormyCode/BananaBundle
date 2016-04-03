@@ -42,5 +42,15 @@ namespace BananaBundle
         {
             this.txt1.Text = this.Bundle.GetElementById(((TreeViewItem)this.localBundle.SelectedItem).Tag.ToString()).Id;
         }
+
+        private void ShouldCompare_Checked(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void ShouldCompare_Click(object sender, RoutedEventArgs e)
+        {
+            this.cbb_compareableUsers.IsEnabled = this.ShouldCompare.IsChecked == true;
+        }
     }
 }

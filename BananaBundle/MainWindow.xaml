@@ -5,8 +5,8 @@
     <Grid Margin="0,0,0,-17.5">
         <TreeView Name="localBundle" HorizontalAlignment="Left" Height="278" Margin="30,10,0,0" VerticalAlignment="Top" Width="349" SelectedItemChanged="localBundle_SelectedItemChanged"/>
         <TextBox Name="txt1" HorizontalAlignment="Left" Height="23" Margin="390,35,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <CheckBox Name="ShouldCompare" Content="compare with" HorizontalAlignment="Left" Margin="30,302,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="162,302,0,0" VerticalAlignment="Top" Width="217"/>
+        <CheckBox Name="ShouldCompare" Content="compare with" HorizontalAlignment="Left" Margin="30,302,0,0" VerticalAlignment="Top" Checked="ShouldCompare_Checked" Click="ShouldCompare_Click"/>
+        <ComboBox Name="cbb_compareableUsers" IsEnabled="False" HorizontalAlignment="Left" Margin="162,295,0,0" VerticalAlignment="Top" Width="217"/>
 
     </Grid>
 </Window>
