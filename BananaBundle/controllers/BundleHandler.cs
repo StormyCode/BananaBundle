@@ -8,6 +8,7 @@ using BananaBundle.models;
 using System.Xml;
 using System.Xml.Linq;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace BananaBundle.controllers
 {
@@ -53,7 +54,7 @@ namespace BananaBundle.controllers
 
         public void WriteXML()
         {
-            using (XmlWriter xmlWriter = XmlWriter.Create(@"C:\Users\"+Environment.UserName+@"\Google Drive\BananaBundle\"+Environment.UserName+".xml", new XmlWriterSettings() { Indent = true, NewLineOnAttributes = true }))
+            using (XmlWriter xmlWriter = XmlWriter.Create(@"C:\Users\" + Environment.UserName + @"\Google Drive\BananaBundle\" + Environment.UserName + ".xml", new XmlWriterSettings() { Indent = true, NewLineOnAttributes = true }))
             {
                 xmlWriter.WriteStartDocument();
                 xmlWriter.WriteStartElement("bundle");
@@ -121,10 +122,10 @@ namespace BananaBundle.controllers
                 TreeViewItem tvi = new TreeViewItem() { Header = serie.Name, Tag = serie.Id };
                 foreach (Season season in serie.Seasons)
                 {
-                    TreeViewItem tvi2 = new TreeViewItem() { Header = season.Name, Tag = tvi.Tag+"/"+season.Id };
+                    TreeViewItem tvi2 = new TreeViewItem() { Header = season.Name, Tag = tvi.Tag + "/" + season.Id };
                     foreach (Episode episode in season.Episodes)
                     {
-                        TreeViewItem tvi3 = new TreeViewItem() { Header = episode.Name, Tag = tvi2.Tag+"/"+episode.Id };
+                        TreeViewItem tvi3 = new TreeViewItem() { Header = episode.Name, Tag = tvi2.Tag + "/" + episode.Id, Foreground = Brushes.Red };
                         tvi2.Items.Add(tvi3);
                     }
                     tvi.Items.Add(tvi2);
@@ -134,9 +135,31 @@ namespace BananaBundle.controllers
             return list.ToArray();
         }
 
-        public TreeViewItem[] AddHighlighted(BundleHandler addition)
+        public TreeViewItem[] Combine(BundleHandler addition)
         {
-            // todo implement this
+            List<TreeViewItem> tree = this.GetTree().ToList();
+            foreach (Serie serie in addition.Series)
+            {
+                if (this.Series.Any(x => x.Id == serie.Id))
+                {
+                    tree.Where(x => x.Header == serie.Name).Select(x => x.Foreground = Brushes.Red);
+                }
+                else
+                {
+                    tree.Add(new TreeViewItem() { Header = serie.Name, Tag = serie.Id, Foreground = Brushes.Red });
+                }
+                foreach (Season season in serie.Seasons)
+                {
+                    if (this.Series.Where(x => x.Id == serie.Id).First().Seasons.Any(x => x.Id == season.Id))
+                    {
+                        // stopped here tree.Where(x => x.Header == serie)
+                    }
+                }
+                TreeViewItem tviSerie = new TreeViewItem();
+                tviSerie.Header = serie.Name;
+                tviSerie.Tag = serie.Id;
+
+            }
             return null;
         }
 
