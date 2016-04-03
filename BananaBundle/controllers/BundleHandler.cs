@@ -53,7 +53,7 @@ namespace BananaBundle.controllers
 
         public void WriteXML()
         {
-            using (XmlWriter xmlWriter = XmlWriter.Create(Environment.UserName+".xml", new XmlWriterSettings() { Indent = true, NewLineOnAttributes = true }))
+            using (XmlWriter xmlWriter = XmlWriter.Create(@"C:\Users\Julian\Google Drive\BananaBundle\"+Environment.UserName+".xml", new XmlWriterSettings() { Indent = true, NewLineOnAttributes = true }))
             {
                 xmlWriter.WriteStartDocument();
                 xmlWriter.WriteStartElement("bundle");

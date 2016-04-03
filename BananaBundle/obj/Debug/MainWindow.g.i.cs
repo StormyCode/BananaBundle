@@ -125,12 +125,6 @@ namespace BananaBundle {
             this.ShouldCompare = ((System.Windows.Controls.CheckBox)(target));
             
             #line 8 "..\..\MainWindow.xaml"
-            this.ShouldCompare.Checked += new System.Windows.RoutedEventHandler(this.ShouldCompare_Checked);
-            
-            #line default
-            #line hidden
-            
-            #line 8 "..\..\MainWindow.xaml"
             this.ShouldCompare.Click += new System.Windows.RoutedEventHandler(this.ShouldCompare_Click);
             
             #line default

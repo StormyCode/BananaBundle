@@ -23,14 +23,12 @@ namespace BananaBundle
     public partial class MainWindow : Window
     {
         public BundleHandler Bundle { get; set; }
-        public BundleHandler xmlBundle { get; set; }
+        public XmlBundleHandler XMLBundles { get; set; }
         public MainWindow()
         {
             InitializeComponent();
-            //this.Bundle = new BundleHandler(@"C:\Users\Julian\Desktop\Serien");
             this.Bundle = new BundleHandler(@"J:\Serien");
-            this.xmlBundle = new BundleHandler(XDocument.Load("test_structure.xml"));
-            // this.Bundle = Bundle.Compare(this.xmlBundle);
+            this.XMLBundles = new XmlBundleHandler(@"C:\Users\Julian\Google Drive\BananaBundle");
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -43,14 +41,11 @@ namespace BananaBundle
             this.txt1.Text = this.Bundle.GetElementById(((TreeViewItem)this.localBundle.SelectedItem).Tag.ToString()).Id;
         }
 
-        private void ShouldCompare_Checked(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
         private void ShouldCompare_Click(object sender, RoutedEventArgs e)
         {
             this.cbb_compareableUsers.IsEnabled = this.ShouldCompare.IsChecked == true;
+            this.cbb_compareableUsers.ItemsSource = this.XMLBundles.XMLBundles.Select(x => x.Path);
+            this.cbb_compareableUsers.SelectedIndex = 0;
         }
     }
 }
