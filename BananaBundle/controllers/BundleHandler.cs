@@ -53,7 +53,7 @@ namespace BananaBundle.controllers
 
         public void WriteXML()
         {
-            using (XmlWriter xmlWriter = XmlWriter.Create(@"C:\Users\Julian\Google Drive\BananaBundle\"+Environment.UserName+".xml", new XmlWriterSettings() { Indent = true, NewLineOnAttributes = true }))
+            using (XmlWriter xmlWriter = XmlWriter.Create(@"C:\Users\"+Environment.UserName+@"\Google Drive\BananaBundle\"+Environment.UserName+".xml", new XmlWriterSettings() { Indent = true, NewLineOnAttributes = true }))
             {
                 xmlWriter.WriteStartDocument();
                 xmlWriter.WriteStartElement("bundle");
@@ -132,6 +132,12 @@ namespace BananaBundle.controllers
                 list.Add(tvi);
             }
             return list.ToArray();
+        }
+
+        public TreeViewItem[] AddHighlighted(BundleHandler addition)
+        {
+            // todo implement this
+            return null;
         }
 
         public IBananaObject GetElementById(string id)

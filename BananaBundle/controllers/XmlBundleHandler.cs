@@ -26,5 +26,15 @@ namespace BananaBundle.controllers
                 }
             }
         }
+
+        public BundleHandler GetBundleByName(string name)
+        {
+            foreach (BundleHandler bundle in this.XMLBundles)
+            {
+                if (bundle.Path == name)
+                    return bundle;
+            }
+            return null;
+        }
     }
 }
