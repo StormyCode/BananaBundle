@@ -55,6 +55,14 @@ namespace BananaBundle {
         #line default
         #line hidden
         
+        
+        #line 8 "..\..\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.CheckBox ShouldCompare;
+        
+        #line default
+        #line hidden
+        
         private bool _contentLoaded;
         
         /// <summary>
@@ -106,12 +114,7 @@ namespace BananaBundle {
             this.txt1 = ((System.Windows.Controls.TextBox)(target));
             return;
             case 4:
-            
-            #line 8 "..\..\MainWindow.xaml"
-            ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.Button_Click);
-            
-            #line default
-            #line hidden
+            this.ShouldCompare = ((System.Windows.Controls.CheckBox)(target));
             return;
             }
             this._contentLoaded = true;

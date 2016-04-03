@@ -83,36 +83,34 @@ namespace BananaBundle.controllers
             }
         }
 
-        public BundleHandler Compare(BundleHandler bundle)
+        public BundleHandler Compare(BundleHandler compareBundle)
         {
             for (int i = 0; i < this.Series.Count; i++)
             {
-                for (int j = 0; j < bundle.Series.Count; j++)
+                for (int j = 0; j < compareBundle.Series.Count; j++)
                 {
-                    if (this.Series[i].Id == bundle.Series[j].Id)
+                    if (this.Series[i].Id == compareBundle.Series[j].Id)
                     {
                         for (int o = 0; o < this.Series[i].Seasons.Count; o++)
                         {
-                            for (int k = 0; o < this.Series[j].Seasons.Count; k++)
+                            for (int k = 0; k < compareBundle.Series[j].Seasons.Count; k++)
                             {
-                                if (this.Series[i].Seasons[o].Id == bundle.Series[j].Seasons[k].Id &&
-                                    this.Series[i].Seasons[o].Episodes.Count == bundle.Series[j].Seasons[k].Episodes.Count &&
-                                    this.Series[i].Seasons[o].Size > bundle.Series[j].Seasons[k].Size * 0.9 &&
-                                    this.Series[i].Seasons[o].Size < bundle.Series[j].Seasons[k].Size * 1.1)
+                                if (this.Series[i].Seasons[o].Id == compareBundle.Series[j].Seasons[k].Id &&
+                                    this.Series[i].Seasons[o].Episodes.Count == compareBundle.Series[j].Seasons[k].Episodes.Count &&
+                                    this.Series[i].Seasons[o].Size > compareBundle.Series[j].Seasons[k].Size * 0.9 &&
+                                    this.Series[i].Seasons[o].Size < compareBundle.Series[j].Seasons[k].Size * 1.1)
                                 {
-                                    bundle.Series[j].Seasons.RemoveAt(k);
+                                    compareBundle.Series[j].Seasons.RemoveAt(k);
                                     break;
                                 }
                             }
                         }
                     }
-                    if (bundle.Series[j].Seasons.Count == 0)
-                    {
-                        bundle.Series.RemoveAt(j);
-                    }
                 }
             }
-            return bundle;
+            // Removes the series without any seasons
+            compareBundle.Series = compareBundle.Series.Where(x => x.Seasons.Count != 0).ToList();
+            return compareBundle;
         }
 
         public TreeViewItem[] GetTree()
