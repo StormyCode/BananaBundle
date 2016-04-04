@@ -39,7 +39,7 @@ namespace BananaBundle
 
         private void localBundle_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            this.txt1.Text = this.Bundle.GetElementById(((TreeViewItem)this.localBundle.SelectedItem).Tag.ToString()).Id;
+            this.tb_infobox.Text = this.Bundle.GetElementById(((TreeViewItem)this.localBundle.SelectedItem).Tag.ToString()).GetInfo();
         }
 
         private void ShouldCompare_Click(object sender, RoutedEventArgs e)

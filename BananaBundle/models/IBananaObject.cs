@@ -13,6 +13,6 @@ namespace BananaBundle.models
         string Path { get; }
         double Size { get; }
 
-        public virtual string GetInfo();
+        string GetInfo();
     }
 }
