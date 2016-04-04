@@ -29,7 +29,7 @@ namespace BananaBundle
             InitializeComponent();
             this.Bundle = new BundleHandler(@"J:\Serien");
             //this.Bundle = new BundleHandler(XDocument.Load("test_structure.xml"));
-            this.XMLBundles = new XmlBundleHandler(@"C:\Users\"+Environment.UserName+@"\Google Drive\BananaBundle");
+            this.XMLBundles = new XmlBundleHandler(@"C:\Users\" + Environment.UserName + @"\Google Drive\BananaBundle");
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -45,16 +45,19 @@ namespace BananaBundle
         private void ShouldCompare_Click(object sender, RoutedEventArgs e)
         {
             this.cbb_compareableUsers.IsEnabled = this.ShouldCompare.IsChecked == true;
-            this.cbb_compareableUsers.ItemsSource = this.XMLBundles.XMLBundles.Select(x => x.Path);
-            this.cbb_compareableUsers.SelectedIndex = -1;
+            this.cbb_compareableUsers.ItemsSource = this.XMLBundles.XMLBundles.Where(x=> x.Path != Environment.UserName).Select(x => x.Path);
+            this.cbb_compareableUsers.SelectedIndex = 0;
             if (this.ShouldCompare.IsChecked == false)
+            {
                 this.localBundle.ItemsSource = this.Bundle.GetTree();
+                this.cbb_compareableUsers.SelectedIndex = -1;
+            }
         }
 
         private void cbb_compareableUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            this.Bundle = this.Bundle.Compare(this.XMLBundles.GetBundleByName(this.cbb_compareableUsers.SelectedValue.ToString()));
-            this.localBundle.ItemsSource = this.Bundle.GetTree();
+            if (this.ShouldCompare.IsChecked == true)
+                this.localBundle.ItemsSource = this.Bundle.Compare(this.XMLBundles.GetBundleByName(this.cbb_compareableUsers.SelectedValue.ToString())).GetTree();
         }
     }
 }
