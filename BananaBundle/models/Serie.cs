@@ -71,5 +71,15 @@ namespace BananaBundle.models
             this.Path = path;
             this.Size = size;
         }
+
+
+        public string GetInfo()
+        {
+            StringBuilder s = new StringBuilder();
+            s.AppendLine("Name: "+this.Name);
+            s.AppendLine("Size: "+this.Size.ToString());
+            s.AppendLine("Seasons: "+this.Seasons.Count);
+            return s.ToString();
+        }
     }
 }

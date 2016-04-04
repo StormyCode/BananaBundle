@@ -27,8 +27,8 @@ namespace BananaBundle
         public MainWindow()
         {
             InitializeComponent();
-            //this.Bundle = new BundleHandler(@"J:\Serien");
-            this.Bundle = new BundleHandler(XDocument.Load("test_structure.xml"));
+            this.Bundle = new BundleHandler(@"J:\Serien");
+            //this.Bundle = new BundleHandler(XDocument.Load("test_structure.xml"));
             this.XMLBundles = new XmlBundleHandler(@"C:\Users\"+Environment.UserName+@"\Google Drive\BananaBundle");
         }
 
