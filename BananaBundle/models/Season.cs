@@ -76,9 +76,9 @@ namespace BananaBundle.models
         public string GetInfo()
         {
             StringBuilder s = new StringBuilder();
-            s.AppendLine("Name: " + this.Name);
-            s.AppendLine("Size: "+this.Size.ToString());
-            s.AppendLine("Episodes: "+this.Episodes.Count);
+            s.AppendLine(this.Name);
+            s.AppendLine(Math.Round(this.Size, 2).ToString() + " GB");
+            s.AppendLine((this.Episodes.Count > 1) ? this.Episodes.Count + " episodes" : this.Episodes.Count + " episode");
             return s.ToString();
         }
     }

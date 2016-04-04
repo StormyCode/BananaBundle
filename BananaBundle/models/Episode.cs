@@ -10,7 +10,7 @@ namespace BananaBundle.models
     [DebuggerDisplay("{Name}")]
     public class Episode : IBananaObject
     {
-        
+
         public string Id
         {
             get
@@ -39,8 +39,8 @@ namespace BananaBundle.models
         {
             get
             {
-                if(this._size == 0)
-                this._size = new System.IO.FileInfo(this.Path).Length / Math.Pow(1024, 3);
+                if (this._size == 0)
+                    this._size = new System.IO.FileInfo(this.Path).Length / Math.Pow(1024, 3);
                 return this._size;
             }
             private set
@@ -48,7 +48,7 @@ namespace BananaBundle.models
                 this._size = value;
             }
         }
-        
+
         public string Extension
         {
             get
@@ -72,9 +72,9 @@ namespace BananaBundle.models
         public string GetInfo()
         {
             StringBuilder s = new StringBuilder();
-            s.AppendLine("Name: "+this.Name);
-            s.AppendLine("Size: "+this.Size.ToString());
-            s.AppendLine("Extension: "+this.Extension);
+            s.AppendLine(this.Name);
+            s.AppendLine(Math.Round(this.Size, 2).ToString() + " GB");
+            s.AppendLine(this.Extension + " - Format");
             return s.ToString();
         }
     }
