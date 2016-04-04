@@ -27,7 +27,8 @@ namespace BananaBundle
         public MainWindow()
         {
             InitializeComponent();
-            this.Bundle = new BundleHandler(@"J:\Serien");
+            //this.Bundle = new BundleHandler(@"J:\Serien");
+            this.Bundle = new BundleHandler(XDocument.Load("test_structure.xml"));
             this.XMLBundles = new XmlBundleHandler(@"C:\Users\"+Environment.UserName+@"\Google Drive\BananaBundle");
         }
 
@@ -45,15 +46,15 @@ namespace BananaBundle
         {
             this.cbb_compareableUsers.IsEnabled = this.ShouldCompare.IsChecked == true;
             this.cbb_compareableUsers.ItemsSource = this.XMLBundles.XMLBundles.Select(x => x.Path);
-            this.cbb_compareableUsers.SelectedIndex = 0;
+            this.cbb_compareableUsers.SelectedIndex = -1;
             if (this.ShouldCompare.IsChecked == false)
                 this.localBundle.ItemsSource = this.Bundle.GetTree();
         }
 
         private void cbb_compareableUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            BundleHandler b = this.Bundle.Compare(this.XMLBundles.GetBundleByName(this.cbb_compareableUsers.SelectedValue.ToString()));
-            
+            this.Bundle = this.Bundle.Compare(this.XMLBundles.GetBundleByName(this.cbb_compareableUsers.SelectedValue.ToString()));
+            this.localBundle.ItemsSource = this.Bundle.GetTree();
         }
     }
 }
