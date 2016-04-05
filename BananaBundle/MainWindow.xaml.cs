@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 using BananaBundle.controllers;
+using BananaBundle.models;
 
 namespace BananaBundle
 {
@@ -24,32 +25,36 @@ namespace BananaBundle
     {
         public BundleHandler Bundle { get; set; }
         public XmlBundleHandler XMLBundles { get; set; }
+        public BundleHandler TreeViewSource { get; set; }
         public MainWindow()
         {
             InitializeComponent();
             this.Bundle = new BundleHandler(@"J:\Serien");
+            this.TreeViewSource = this.Bundle;
             //this.Bundle = new BundleHandler(XDocument.Load("test_structure.xml"));
             this.XMLBundles = new XmlBundleHandler(@"C:\Users\" + Environment.UserName + @"\Google Drive\BananaBundle");
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.localBundle.ItemsSource = this.Bundle.GetTree();
+            this.localBundle.ItemsSource = this.TreeViewSource.GetTree();
         }
 
         private void localBundle_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            this.tb_infobox.Text = this.Bundle.GetElementById(((TreeViewItem)this.localBundle.SelectedItem).Tag.ToString()).GetInfo();
+            this.tb_infobox.Text = ((IBananaObject)((TreeViewItem)this.localBundle.SelectedItem).Tag).GetInfo();
+            //this.tb_infobox.Text = this.TreeViewSource.GetElementById(((TreeViewItem)this.localBundle.SelectedItem).Tag.ToString()).GetInfo();
         }
 
         private void ShouldCompare_Click(object sender, RoutedEventArgs e)
         {
             this.cbb_compareableUsers.IsEnabled = this.ShouldCompare.IsChecked == true;
-            this.cbb_compareableUsers.ItemsSource = this.XMLBundles.XMLBundles.Where(x=> x.Path != Environment.UserName).Select(x => x.Path);
+            this.cbb_compareableUsers.ItemsSource = this.XMLBundles.XMLBundles.Where(x => x.Path != Environment.UserName).Select(x => x.Path);
             this.cbb_compareableUsers.SelectedIndex = 0;
             if (this.ShouldCompare.IsChecked == false)
             {
-                this.localBundle.ItemsSource = this.Bundle.GetTree();
+                this.TreeViewSource = this.Bundle;
+                this.localBundle.ItemsSource = this.TreeViewSource.GetTree();
                 this.cbb_compareableUsers.SelectedIndex = -1;
             }
         }
@@ -57,7 +62,9 @@ namespace BananaBundle
         private void cbb_compareableUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (this.ShouldCompare.IsChecked == true)
-                this.localBundle.ItemsSource = this.Bundle.Compare(this.XMLBundles.GetBundleByName(this.cbb_compareableUsers.SelectedValue.ToString())).GetTree();
+            {
+                this.localBundle.ItemsSource = this.Bundle.Combine(this.Bundle.Compare(this.XMLBundles.GetBundleByName(this.cbb_compareableUsers.SelectedValue.ToString())), Brushes.Red);
+            }
         }
     }
 }

@@ -119,13 +119,13 @@ namespace BananaBundle.controllers
             List<TreeViewItem> list = new List<TreeViewItem>();
             foreach (Serie serie in this.Series)
             {
-                TreeViewItem tvi = new TreeViewItem() { Header = serie.Name, Tag = serie.Id };
+                TreeViewItem tvi = new TreeViewItem() { Header = serie.Name, Tag = serie };
                 foreach (Season season in serie.Seasons)
                 {
-                    TreeViewItem tvi2 = new TreeViewItem() { Header = season.Name, Tag = tvi.Tag + "/" + season.Id };
+                    TreeViewItem tvi2 = new TreeViewItem() { Header = season.Name, Tag = season };
                     foreach (Episode episode in season.Episodes)
                     {
-                        TreeViewItem tvi3 = new TreeViewItem() { Header = episode.Name, Tag = tvi2.Tag + "/" + episode.Id, Foreground = Brushes.Red };
+                        TreeViewItem tvi3 = new TreeViewItem() { Header = episode.Name, Tag = episode };
                         tvi2.Items.Add(tvi3);
                     }
                     tvi.Items.Add(tvi2);
@@ -135,7 +135,7 @@ namespace BananaBundle.controllers
             return list.ToArray();
         }
 
-        public TreeViewItem[] Combine(BundleHandler add)
+        public TreeViewItem[] Combine(BundleHandler add, Brush b)
         {
             List<TreeViewItem> combined = this.GetTree().ToList();
             foreach (TreeViewItem serie in add.GetTree())
@@ -145,7 +145,7 @@ namespace BananaBundle.controllers
                 {
                     if (serie.Header.ToString() == oldserie.Header.ToString())
                     {
-                        //oldserie.Foreground = Brushes.Red;
+                        oldserie.Foreground = b;
                         foundSerie = true;
                         foreach (TreeViewItem season in serie.Items)
                         {
@@ -154,7 +154,7 @@ namespace BananaBundle.controllers
                             {
                                 if (season.Header.ToString() == oldSeason.Header.ToString())
                                 {
-                                    //oldSeason.Foreground = Brushes.Red;
+                                    oldSeason.Foreground = b;
                                     foundSeason = true;
 
                                     foreach (TreeViewItem episode in season.Items)
@@ -164,37 +164,52 @@ namespace BananaBundle.controllers
                                         {
                                             if (episode.Header.ToString() == oldEpisode.Header.ToString())
                                             {
-                                                //oldEpisode.Foreground = Brushes.Red;
+                                                oldEpisode.Foreground = b;
                                                 foundEpi = true;
-                                                break;
 
                                             }
                                         }
                                         if (foundEpi == false)
                                         {
-                                            TreeViewItem t3 = new TreeViewItem() { Header = episode.Header, Tag = episode.Tag, ItemsSource = episode.Items, Foreground = Brushes.Red };
+                                            TreeViewItem t3 = new TreeViewItem() { Header = episode.Header, Tag = episode.Tag, ItemsSource = episode.Items, Foreground = b, IsSelected= true };
                                             oldSeason.Items.Add(t3);
+                                            oldSeason.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Header", System.ComponentModel.ListSortDirection.Ascending));
                                         }
                                     }
-                                    break;
                                 }
                             }
                             if (foundSeason == false)
                             {
-                                TreeViewItem t2 = new TreeViewItem() { Header = season.Header, Tag = season.Tag, ItemsSource = season.Items, Foreground = Brushes.Red };
+                                TreeViewItem t2 = new TreeViewItem() { Header = season.Header, Tag = season.Tag, ItemsSource = season.Items, Foreground = b };
+                                foreach (TreeViewItem t_episode in t2.Items)
+                                {
+                                    t_episode.Foreground = b;
+                                    t_episode.IsHitTestVisible = true;
+                                }
                                 oldserie.Items.Add(t2);
+                                oldserie.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Header", System.ComponentModel.ListSortDirection.Ascending));
                             }
                         }
-                        break;
                     }
                 }
                 if (foundSerie == false)
                 {
-                    TreeViewItem t1 = new TreeViewItem() { Header = serie.Header, Tag = serie.Tag, ItemsSource = serie.Items, Foreground = Brushes.Red };
+                    TreeViewItem t1 = new TreeViewItem() { Header = serie.Header, Tag = serie.Tag, ItemsSource = serie.Items, Foreground = b };
+                    foreach (TreeViewItem t_season in t1.Items)
+                    {
+                        t_season.Foreground = b;
+                        t_season.IsHitTestVisible = true;
+                        foreach (TreeViewItem t_episode in t_season.Items)
+                        {
+                            t_episode.Foreground = b;
+                            t_episode.IsHitTestVisible = true;
+                        }
+                    }
                     combined.Add(t1);
+                    combined = combined.OrderBy(x => x.Header).ToList();
                 }
             }
-            return combined.ToArray();
+            return combined.OrderBy(x => x.Header).ToArray();
         }
 
         public IBananaObject GetElementById(string id)
