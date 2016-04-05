@@ -119,13 +119,13 @@ namespace BananaBundle.controllers
             List<TreeViewItem> list = new List<TreeViewItem>();
             foreach (Serie serie in this.Series)
             {
-                TreeViewItem tvi = new TreeViewItem() { Header = serie.Name, Tag = serie };
+                TreeViewItem tvi = new TreeViewItem() { Header = serie.Name, Tag = serie, Uid = serie.Id };
                 foreach (Season season in serie.Seasons)
                 {
-                    TreeViewItem tvi2 = new TreeViewItem() { Header = season.Name, Tag = season };
+                    TreeViewItem tvi2 = new TreeViewItem() { Header = season.Name, Tag = season, Uid = season.Id };
                     foreach (Episode episode in season.Episodes)
                     {
-                        TreeViewItem tvi3 = new TreeViewItem() { Header = episode.Name, Tag = episode };
+                        TreeViewItem tvi3 = new TreeViewItem() { Header = episode.Name, Tag = episode, Uid = episode.Id };
                         tvi2.Items.Add(tvi3);
                     }
                     tvi.Items.Add(tvi2);
