@@ -29,10 +29,18 @@ namespace BananaBundle
         public MainWindow()
         {
             InitializeComponent();
-            this.Bundle = new BundleHandler(@"J:\Serien");
-            this.TreeViewSource = this.Bundle;
-            //this.Bundle = new BundleHandler(XDocument.Load("test_structure.xml"));
-            this.XMLBundles = new XmlBundleHandler(@"C:\Users\" + Environment.UserName + @"\Google Drive\BananaBundle");
+            try
+            {
+                this.Bundle = new BundleHandler(SettingsHandler.Instance.SeriesDirectory);
+                this.TreeViewSource = this.Bundle;
+                //this.Bundle = new BundleHandler(XDocument.Load("test_structure.xml"));
+                this.XMLBundles = new XmlBundleHandler(SettingsHandler.Instance.GDriveDirectory);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Invalid startup settings");
+                this.Close();
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
