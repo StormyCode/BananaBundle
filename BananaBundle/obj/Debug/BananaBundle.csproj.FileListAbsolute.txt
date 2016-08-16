@@ -12,3 +12,5 @@ C:\Users\Julian\Source\Repos\BananaBundle\BananaBundle\bin\Debug\BananaBundle.ex
 C:\Users\Julian\Source\Repos\BananaBundle\BananaBundle\bin\Debug\BananaBundle.pdb
 C:\Users\Julian\Source\Repos\BananaBundle\BananaBundle\obj\Debug\BananaBundle.exe
 C:\Users\Julian\Source\Repos\BananaBundle\BananaBundle\obj\Debug\BananaBundle.pdb
+C:\Users\Julian\Source\Repos\BananaBundle\BananaBundle\obj\Debug\InitSettings.baml
+C:\Users\Julian\Source\Repos\BananaBundle\BananaBundle\obj\Debug\InitSettings.g.cs

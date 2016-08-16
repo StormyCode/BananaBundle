@@ -56,8 +56,15 @@
     <Compile Include="controllers\BundleHandler.cs" />
     <Compile Include="controllers\SettingsHandler.cs" />
     <Compile Include="controllers\XmlBundleHandler.cs" />
+    <Compile Include="InitSettings.xaml.cs">
+      <DependentUpon>InitSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="models\IBananaObject.cs" />
     <Compile Include="models\Serie.cs" />
+    <Page Include="InitSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

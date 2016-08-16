@@ -43,18 +43,18 @@ namespace BananaBundle.controllers
         private string _gDriveDirectory;
         public string GDriveDirectory
         {
-            get 
+            get
             {
                 if (Directory.Exists(_gDriveDirectory) == false)
                     Directory.CreateDirectory(_gDriveDirectory);
-                return _gDriveDirectory; 
+                return _gDriveDirectory;
             }
-            private set 
-            { 
-                _gDriveDirectory = value; 
+            private set
+            {
+                _gDriveDirectory = value;
             }
         }
-        
+
 
         private SettingsHandler()
         {
@@ -63,31 +63,37 @@ namespace BananaBundle.controllers
 
         private void ReadSettings()
         {
-            if(File.Exists(@"settings.txt"))
+            if (File.Exists(@"settings.txt") == false)
             {
-                using (StreamReader sr = new StreamReader(@"settings.txt"))
+                InitSettings form = new InitSettings();
+                form.ShowDialog();
+                if (form.PathSeries == null || form.PathGDrive == null) return;
+                using (StreamWriter sw = new StreamWriter(@"settings.txt"))
                 {
-                    string line = string.Empty;
-                    while ((line = sr.ReadLine()) != null)
+                    sw.WriteLine(string.Format("seriesdirectory={0}", form.@PathSeries));
+                    sw.WriteLine(string.Format("gdrivedirectory={0}", form.@PathGDrive));
+                }
+                this.SeriesDirectory = form.PathSeries;
+                this.GDriveDirectory = form.PathGDrive;
+            }
+
+            using (StreamReader sr = new StreamReader(@"settings.txt"))
+            {
+                string line = string.Empty;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    switch (line.Split('=').First().ToLower().Trim())
                     {
-                        switch (line.Split('=').First().ToLower().Trim())
-                        {
-                            case "seriesdirectory":
-                                string s = @line.Split('=').Last().Trim();
-                                this.SeriesDirectory = s;
-                                break;
-                            case "gdrivedirectory":
-                                this.GDriveDirectory = @line.Split('=').Last().Trim();
-                                break;
-                        }
+                        case "seriesdirectory":
+                            string s = @line.Split('=').Last().Trim();
+                            this.SeriesDirectory = s;
+                            break;
+                        case "gdrivedirectory":
+                            this.GDriveDirectory = @line.Split('=').Last().Trim();
+                            break;
                     }
                 }
             }
-            else
-            {
-                // todo: initialabfrage der settings
-            }
-            
         }
     }
 }

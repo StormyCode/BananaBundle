@@ -1,0 +1,14 @@
+﻿<Window x:Class="BananaBundle.InitSettings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Setup" Height="202.544" Width="300">
+    <Grid Margin="0,0,0,2.5">
+        <TextBox x:Name="txtbox_gdrive" HorizontalAlignment="Left" Height="23" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" TextChanged="txtbox_gdrive_TextChanged"/>
+        <Label x:Name="lbl_gdrive" Content="GDrive Directory" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtbox_series" HorizontalAlignment="Left" Height="23" Margin="10,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" TextChanged="txtbox_series_TextChanged"/>
+        <Label x:Name="lbl_series" Content="Series Directory" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_ok" Content="OK" HorizontalAlignment="Left" Margin="128,142,0,0" VerticalAlignment="Top" Width="76" Click="btn_ok_Click"/>
+        <Button x:Name="btn_cancel" Content="Cancel" HorizontalAlignment="Left" Margin="209,142,0,0" VerticalAlignment="Top" Width="76" Click="btn_cancel_Click"/>
+
+    </Grid>
+</Window>
